@@ -1,0 +1,6 @@
+fastapi==0.95.0  # Asegúrate de usar una versión estable
+uvicorn==0.22.0  # Versión recomendada para FastAPI
+sqlalchemy==2.0.0  # Revisa las recomendaciones de compatibilidad
+mysql-connector-python==8.0.32  # Versión compatible con MySQL 8
+python-dotenv==1.0.0  # Para trabajar con variables de entorno
+mysqlclient

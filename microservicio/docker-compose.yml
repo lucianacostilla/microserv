@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: practica
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+  task_service:
+    build:
+      context: ./task_service
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root_password
+      DATABASE_NAME: practica
+    depends_on:
+      - mysql
+    ports:
+      - "8000:8000"
+
+  visualization_service:
+    build:
+      context: ./visualization_service
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root_password
+      DATABASE_NAME: practica
+    depends_on:
+      - mysql
+    ports:
+      - "8001:8001"
+
+volumes:
+  mysql_data:
